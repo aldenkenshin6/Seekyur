@@ -128,8 +128,14 @@ app.set('io', io);
 
 socketHandler(io);
 
+const fs = require('fs');
 app.get(/.*/, (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+    const indexPath = path.join(__dirname, '../client/build', 'index.html');
+    if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+    } else {
+        res.json({ status: 'API is running', message: 'SOC-IT21 Backend' });
+    }
 });
 
 const PORT = process.env.PORT || 3000;
