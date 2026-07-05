@@ -1,0 +1,108 @@
+.authlogs-stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.authlogs-stat-card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.authlogs-stat-value {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+}
+
+.authlogs-stat-label {
+  color: #64748b;
+  font-size: 12px;
+  margin: 0;
+}
+
+.authlogs-table-container {
+  background: transparent;
+}
+
+.authlogs-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.authlogs-table th {
+  background: #0f172a;
+  padding: 12px 20px;
+  text-align: left;
+  color: #64748b;
+  font-size: 11px;
+  font-family: monospace;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-top: 1px solid #1e293b;
+  border-bottom: 1px solid #1e293b;
+}
+
+.authlogs-table th:first-child {
+  border-left: 1px solid #1e293b;
+  border-top-left-radius: 8px;
+}
+
+.authlogs-table th:last-child {
+  border-right: 1px solid #1e293b;
+  border-top-right-radius: 8px;
+}
+
+.authlogs-table td {
+  padding: 16px 20px;
+  color: #e2e8f0;
+  font-size: 13px;
+  border-bottom: 1px solid #1e293b;
+  background: #0b1120;
+}
+
+.authlogs-table td:first-child {
+  border-left: 1px solid #1e293b;
+}
+
+.authlogs-table td:last-child {
+  border-right: 1px solid #1e293b;
+}
+
+.authlogs-table tr:hover td {
+  background: #0f172a;
+}
+
+.event-cell {
+  color: #00c6ff;
+  font-family: monospace;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.email-cell {
+  color: #e2e8f0;
+}
+
+.location-cell {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.session-cell, .agent-cell {
+  color: #64748b;
+  font-family: monospace;
+  font-size: 11px;
+}
+
+.reason-cell {
+  color: #ef4444;
+  font-size: 12px;
+}

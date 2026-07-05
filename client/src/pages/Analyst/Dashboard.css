@@ -1,0 +1,178 @@
+/* Custom CSS specific to Analyst Dashboard */
+.analyst-theme {
+    background-color: #060b13;
+}
+
+.analyst-theme .stat-card {
+    background: #090e1a;
+    border-radius: 12px;
+    border: 1px solid #1a2233;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Card border glows */
+.analyst-theme .stat-card.blue {
+    border: 1px solid rgba(0, 198, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 198, 255, 0.05);
+}
+.analyst-theme .stat-card.orange {
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.05);
+}
+.analyst-theme .stat-card.red {
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.05);
+}
+.analyst-theme .stat-card.green {
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.05);
+}
+
+/* Custom Live Alert Feed layout for Analyst */
+.analyst-alert-feed-card {
+    background: #090e1a;
+    border: 1px solid #1a2233;
+    border-radius: 12px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.analyst-alert-feed-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #1a2233;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.analyst-alert-feed-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #e2e8f0;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.analyst-live-dot {
+    width: 6px;
+    height: 6px;
+    background: #ef4444;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ef4444;
+}
+
+.analyst-alert-feed-status {
+    color: #00c6ff;
+    font-size: 11px;
+    font-family: monospace;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.analyst-alert-list {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+    max-height: 250px;
+}
+
+.analyst-alert-item {
+    display: flex;
+    padding: 10px 10px 10px 20px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.01);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    transition: all 0.2s ease;
+}
+
+.analyst-alert-item:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+.analyst-alert-severity-bar {
+    position: absolute;
+    left: 8px;
+    top: 10px;
+    bottom: 10px;
+    width: 3px;
+    border-radius: 3px;
+}
+
+.analyst-alert-content {
+    flex: 1;
+}
+
+.analyst-alert-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.analyst-alert-type-badge {
+    font-family: monospace;
+    font-size: 11px;
+    font-weight: bold;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
+}
+
+.analyst-alert-severity-tag {
+    display: inline-block;
+    font-size: 9px;
+    font-family: monospace;
+    font-weight: bold;
+    padding: 1px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.analyst-alert-severity-tag.severity-critical {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+.analyst-alert-severity-tag.severity-high {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+.analyst-alert-severity-tag.severity-medium {
+    background: rgba(234, 179, 8, 0.1);
+    color: #eab308;
+    border: 1px solid rgba(234, 179, 8, 0.2);
+}
+.analyst-alert-severity-tag.severity-low {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.analyst-alert-time {
+    color: #475569;
+    font-size: 11px;
+    font-family: monospace;
+}
+
+.analyst-alert-desc {
+    color: #e2e8f0;
+    font-size: 12px;
+    margin: 4px 0;
+    line-height: 1.4;
+}
+
+.analyst-alert-source {
+    color: #5d6b82;
+    font-size: 11px;
+    font-family: monospace;
+    margin: 0;
+}

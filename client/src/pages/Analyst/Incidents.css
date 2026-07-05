@@ -1,0 +1,208 @@
+/* Custom CSS specific to Analyst Incidents */
+.analyst-theme .incidents-content {
+  background-color: #060b13;
+}
+
+.analyst-theme .incidents-table-container {
+  background: #090e1a;
+  border: 1px solid #1a2233;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.analyst-theme .incidents-table th {
+  background: rgba(11, 18, 32, 0.6);
+  border-bottom: 1px solid #1a2233;
+}
+
+.analyst-theme .incidents-table td {
+  border-bottom: 1px solid rgba(26, 34, 51, 0.4);
+}
+
+.analyst-theme .search-input {
+  background: #090e1a;
+  border: 1px solid #1a2233;
+}
+
+.analyst-theme .filter-select {
+  background-color: #090e1a;
+  border: 1px solid #1a2233;
+}
+
+.analyst-theme .search-input:focus,
+.analyst-theme .filter-select:focus {
+  border-color: #00c6ff;
+}
+
+.analyst-theme .new-incident-btn {
+  background: rgba(0, 198, 255, 0.1);
+  color: #00c6ff;
+  border: 1px solid rgba(0, 198, 255, 0.3);
+  border-radius: 6px;
+}
+.analyst-theme .new-incident-btn:hover {
+  background: rgba(0, 198, 255, 0.2);
+}
+
+/* Modal Overrides */
+.analyst-theme .form-overlay {
+  background: rgba(4, 7, 15, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.analyst-theme .form-modal {
+  background: #090e1a;
+  border: 1px solid #1a2233;
+  border-radius: 12px;
+  padding: 24px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.analyst-theme .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.analyst-theme .modal-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.analyst-theme .close-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.analyst-theme .close-btn:hover {
+  color: #fff;
+}
+
+.analyst-theme .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.analyst-theme .form-group label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.analyst-theme .form-group input,
+.analyst-theme .form-group textarea,
+.analyst-theme .form-group select {
+  background: #0d1527;
+  border: 1px solid #1a2233;
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: #f1f5f9;
+  font-size: 13px;
+  outline: none;
+  transition: all 0.2s;
+  width: 100%;
+  text-align: left;
+}
+
+.analyst-theme .form-group input::placeholder,
+.analyst-theme .form-group textarea::placeholder {
+  color: #475569;
+}
+
+.analyst-theme .form-group input:focus,
+.analyst-theme .form-group textarea:focus,
+.analyst-theme .form-group select:focus {
+  border-color: #00e5ff;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.2);
+}
+
+.analyst-theme .form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.analyst-theme .flex-1 {
+  flex: 1;
+}
+
+.analyst-theme .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.analyst-theme .btn-cancel {
+  background: transparent;
+  border: 1px solid #1a2233;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-transform: lowercase;
+  transition: all 0.2s;
+}
+
+.analyst-theme .btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.analyst-theme .btn-submit {
+  background: #00e5ff;
+  border: none;
+  color: #000;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-transform: lowercase;
+  transition: all 0.2s;
+  box-shadow: 0 2px 10px rgba(0, 229, 255, 0.3);
+}
+
+.analyst-theme .btn-submit:hover {
+  background: #00b3cc;
+  box-shadow: 0 2px 15px rgba(0, 229, 255, 0.5);
+}
+
+.analyst-theme .view-link-btn {
+  background: transparent;
+  border: none;
+  color: #00e5ff;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  text-transform: lowercase;
+  transition: color 0.2s;
+}
+
+.analyst-theme .view-link-btn:hover {
+  color: #00b3cc;
+  text-decoration: underline;
+}

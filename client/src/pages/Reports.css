@@ -1,0 +1,131 @@
+.reports-page-title {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+}
+
+.reports-page-subtitle {
+  color: #64748b;
+  font-size: 12px;
+  font-family: monospace;
+  margin: 0;
+}
+
+.reports-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+
+.export-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.export-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.2s;
+}
+
+.export-csv {
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.export-csv:hover {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.export-pdf {
+  color: #00c6ff;
+  border: 1px solid rgba(0, 198, 255, 0.3);
+}
+
+.export-pdf:hover {
+  background: rgba(0, 198, 255, 0.1);
+}
+
+.reports-stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.report-stat-card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.report-stat-value {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0 0 4px 0;
+}
+
+.report-stat-label {
+  color: #64748b;
+  font-size: 11px;
+  font-family: monospace;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.val-blue { color: #3b82f6; }
+.val-cyan { color: #00c6ff; }
+.val-red { color: #ef4444; }
+
+.reports-chart-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.report-chart-card {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.report-chart-title {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+}
+
+@media print {
+  body {
+    background: #000 !important;
+    color: #fff !important;
+  }
+  .sidebar, .top-header, .export-actions {
+    display: none !important;
+  }
+  .main-content {
+    margin-left: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  .reports-chart-row {
+    page-break-inside: avoid;
+  }
+}

@@ -1,0 +1,359 @@
+/* Analyst Reports Page Styling */
+.analyst-theme {
+  --critical-color: #ff3b5c;
+  --high-color: #ff7b00;
+  --medium-color: #ffc400;
+  --low-color: #00e5ff;
+  --card-bg: #090d16;
+  --border-color: #1a2233;
+}
+
+.analyst-theme .incidents-content {
+  padding: 25px;
+}
+
+.analyst-theme .reports-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.analyst-theme .reports-page-title {
+  color: #f1f5f9;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  text-align: left;
+}
+
+.analyst-theme .reports-page-subtitle {
+  color: #64748b;
+  font-size: 13px;
+  margin: 0;
+  text-align: left;
+}
+
+.analyst-theme .export-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.analyst-theme .export-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 10px 16px;
+  color: #f1f5f9;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.analyst-theme .export-btn.export-csv {
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #10b981;
+}
+
+.analyst-theme .export-btn.export-csv:hover {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: #10b981;
+}
+
+.analyst-theme .export-btn.export-pdf {
+  border-color: rgba(0, 198, 255, 0.3);
+  color: #00c6ff;
+}
+
+.analyst-theme .export-btn.export-pdf:hover {
+  background: rgba(0, 198, 255, 0.1);
+  border-color: #00c6ff;
+}
+
+.analyst-theme .reports-stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.analyst-theme .report-stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.analyst-theme .report-stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  font-family: 'Space Mono', monospace;
+}
+
+.analyst-theme .report-stat-value.val-blue {
+  color: #3b82f6;
+}
+
+.analyst-theme .report-stat-value.val-cyan {
+  color: #00c6ff;
+}
+
+.analyst-theme .report-stat-value.val-red {
+  color: var(--critical-color);
+}
+
+.analyst-theme .report-stat-label {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.analyst-theme .reports-chart-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.analyst-theme .report-chart-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.analyst-theme .report-chart-title {
+  color: #f1f5f9;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  text-align: left;
+}
+
+.analyst-theme .table-container {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  margin-top: 24px;
+}
+
+.analyst-theme .table-header {
+  background: #0d1527;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.analyst-theme .table-title {
+  color: #f1f5f9;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 0;
+  text-align: left;
+}
+
+.analyst-theme .incidents-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.analyst-theme .incidents-table th {
+  background: transparent;
+  padding: 14px 20px;
+  color: #475569;
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.analyst-theme .incidents-table td {
+  padding: 16px 20px;
+  color: #e2e8f0;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border-color);
+  background: transparent;
+}
+
+.analyst-theme .incidents-table tr:last-child td {
+  border-bottom: none;
+}
+
+.analyst-theme .incidents-table tr {
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.analyst-theme .incidents-table tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Cell Overrides */
+.analyst-theme .cell-id {
+  color: #00c6ff;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+}
+
+.analyst-theme .cell-muted {
+  color: #64748b;
+}
+
+.analyst-theme .updated-time {
+  color: #475569;
+  font-size: 12px;
+}
+
+/* Severity Pill */
+.analyst-theme .severity-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.analyst-theme .severity-pill.critical {
+  background: rgba(255, 59, 92, 0.1);
+  border: 1px solid rgba(255, 59, 92, 0.25);
+  color: var(--critical-color);
+}
+
+.analyst-theme .severity-pill.critical .dot {
+  background: var(--critical-color);
+  box-shadow: 0 0 6px var(--critical-color);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.analyst-theme .severity-pill.high {
+  background: rgba(255, 123, 0, 0.1);
+  border: 1px solid rgba(255, 123, 0, 0.25);
+  color: var(--high-color);
+}
+
+.analyst-theme .severity-pill.high .dot {
+  background: var(--high-color);
+  box-shadow: 0 0 6px var(--high-color);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.analyst-theme .severity-pill.medium {
+  background: rgba(255, 196, 0, 0.1);
+  border: 1px solid rgba(255, 196, 0, 0.25);
+  color: var(--medium-color);
+}
+
+.analyst-theme .severity-pill.medium .dot {
+  background: var(--medium-color);
+  box-shadow: 0 0 6px var(--medium-color);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.analyst-theme .severity-pill.low {
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  color: var(--low-color);
+}
+
+.analyst-theme .severity-pill.low .dot {
+  background: var(--low-color);
+  box-shadow: 0 0 6px var(--low-color);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* Status Pill */
+.analyst-theme .status-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.analyst-theme .status-pill.status-collect {
+  background: rgba(0, 198, 255, 0.1);
+  border: 1px solid rgba(0, 198, 255, 0.25);
+  color: #00c6ff;
+}
+
+.analyst-theme .status-pill.status-analyze {
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  color: #a855f7;
+}
+
+.analyst-theme .status-pill.status-respond {
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.25);
+  color: #f97316;
+}
+
+.analyst-theme .status-pill.status-close {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #10b981;
+}
+
+/* Print CSS to make reports look beautiful when saving as PDF */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .analyst-theme .incidents-content,
+  .analyst-theme .incidents-content * {
+    visibility: visible;
+  }
+  .analyst-theme .incidents-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: white !important;
+    color: black !important;
+  }
+  .analyst-theme .report-stat-card,
+  .analyst-theme .report-chart-card,
+  .analyst-theme .table-container {
+    background: white !important;
+    border: 1px solid #ccc !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+  .analyst-theme .report-stat-value {
+    color: black !important;
+  }
+  .analyst-theme .export-actions {
+    display: none !important;
+  }
+}

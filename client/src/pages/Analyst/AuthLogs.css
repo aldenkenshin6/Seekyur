@@ -1,0 +1,265 @@
+/* Analyst Auth Logs Styling */
+.analyst-theme {
+  --success-color: #10b981;
+  --failed-color: #ff3b5c;
+  --ip-failed-color: #ff7b00;
+  --card-bg: #090d16;
+  --border-color: #1a2233;
+}
+
+.analyst-theme .incidents-content {
+  padding: 25px;
+}
+
+.analyst-theme .authlogs-title-row {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.analyst-theme .authlogs-stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.analyst-theme .authlogs-stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.analyst-theme .authlogs-stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  font-family: 'Space Mono', monospace;
+}
+
+.analyst-theme .authlogs-stat-label {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.analyst-theme .filter-bar {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  background: var(--card-bg);
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  align-items: center;
+}
+
+.analyst-theme .search-input-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.analyst-theme .search-icon {
+  position: absolute;
+  left: 12px;
+  color: #475569;
+}
+
+.analyst-theme .alerts-search-input {
+  width: 100%;
+  background: #0d1527;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 10px 12px 10px 38px;
+  color: #f1f5f9;
+  font-size: 13px;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+
+.analyst-theme .alerts-search-input:focus {
+  border-color: #00e5ff;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.15);
+}
+
+.analyst-theme .filter-dropdown {
+  background: #0d1527;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 10px 36px 10px 16px;
+  color: #f1f5f9;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  min-width: 140px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+  transition: all 0.2s;
+}
+
+.analyst-theme .filter-dropdown:focus {
+  border-color: #00e5ff;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.15);
+}
+
+.analyst-theme .live-feed-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #64748b;
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  margin-bottom: 0;
+  text-align: left;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+}
+
+.analyst-theme .authlogs-table-container {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.analyst-theme .authlogs-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.analyst-theme .authlogs-table th {
+  background: #0d1527;
+  padding: 14px 20px;
+  color: #475569;
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.analyst-theme .authlogs-table td {
+  padding: 16px 20px;
+  color: #e2e8f0;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border-color);
+  background: transparent;
+}
+
+.analyst-theme .authlogs-table tr:last-child td {
+  border-bottom: none;
+}
+
+.analyst-theme .authlogs-table tr {
+  transition: background 0.15s;
+}
+
+.analyst-theme .authlogs-table tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Severity Pill overrides for Success / Failed results */
+.analyst-theme .severity-pill.success {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: var(--success-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.analyst-theme .severity-pill.success .dot {
+  background: var(--success-color);
+  box-shadow: 0 0 6px var(--success-color);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.analyst-theme .severity-pill.failed {
+  background: rgba(255, 59, 92, 0.1);
+  border: 1px solid rgba(255, 59, 92, 0.25);
+  color: var(--failed-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.analyst-theme .severity-pill.failed .dot {
+  background: var(--failed-color);
+  box-shadow: 0 0 6px var(--failed-color);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.analyst-theme .event-cell {
+  color: #00c6ff;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.analyst-theme .email-cell {
+  color: #f1f5f9;
+}
+
+.analyst-theme .source-ip-cell {
+  color: #00c6ff;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+}
+
+.analyst-theme .location-cell {
+  color: #94a3b8;
+}
+
+.analyst-theme .session-cell {
+  color: #64748b;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+}
+
+.analyst-theme .agent-cell {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.analyst-theme .updated-time {
+  color: #475569;
+  font-size: 12px;
+}
+
+.analyst-theme .reason-cell {
+  color: var(--failed-color);
+  font-size: 12px;
+  font-weight: 500;
+}
