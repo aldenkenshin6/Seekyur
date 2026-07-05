@@ -1,0 +1,22 @@
+# Dependency directories
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+server/.env
+detector/.env
+
+# Python caching & virtual environments
+__pycache__/
+*.pyc
+.venv/
+
+# Build outputs
+client/build/
+dist/
