@@ -15,6 +15,7 @@ const SEVERITY_COLORS = { Low: '#10b981', Medium: '#eab308', High: '#f59e0b', Cr
 
 const DefaultReports = () => {
     const [incidents, setIncidents] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -115,13 +116,19 @@ const DefaultReports = () => {
         window.print();
     };
 
+    // Pagination logic
+    const itemsPerPage = 10;
+    const totalPages = Math.ceil(incidents.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const paginatedIncidents = incidents.slice(startIndex, startIndex + itemsPerPage);
+
     return (
         <div className="dashboard-layout">
             <Sidebar />
             
             <div className="main-content">
                 <Header />
-
+                
                 <div className="incidents-content">
                     <div className="reports-header-row">
                         <div>
@@ -243,7 +250,7 @@ const DefaultReports = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {incidents.map((inc) => {
+                                {paginatedIncidents.map((inc) => {
                                     const severityClass = (inc.severity || 'low').toLowerCase();
                                     const statusClass = (inc.status || 'analyze').toLowerCase();
                                     
@@ -275,6 +282,38 @@ const DefaultReports = () => {
                                 )}
                             </tbody>
                         </table>
+                        {totalPages > 1 && (
+                            <div className="pagination-container">
+                                <div className="pagination-info">
+                                    Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, incidents.length)} of {incidents.length} entries
+                                </div>
+                                <div className="pagination-buttons">
+                                    <button 
+                                        className="pagination-btn" 
+                                        disabled={currentPage === 1}
+                                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                    >
+                                        Previous
+                                    </button>
+                                    {[...Array(totalPages).keys()].map(page => (
+                                        <button 
+                                            key={page + 1}
+                                            className={`pagination-btn ${currentPage === page + 1 ? 'active' : ''}`}
+                                            onClick={() => setCurrentPage(page + 1)}
+                                        >
+                                            {page + 1}
+                                        </button>
+                                    ))}
+                                    <button 
+                                        className="pagination-btn" 
+                                        disabled={currentPage === totalPages}
+                                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                    >
+                                        Next
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
