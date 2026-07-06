@@ -166,7 +166,7 @@ const DefaultReports = () => {
                                 <BarChart data={severityData} margin={{ top: 5, right: 0, bottom: 0, left: -20 }}>
                                     <XAxis dataKey="name" stroke="#475569" fontSize={10} tickLine={false} axisLine={{stroke: '#1e293b'}} />
                                     <YAxis stroke="#475569" fontSize={10} tickLine={false} axisLine={false} />
-                                    <Tooltip cursor={{fill: '#1e293b'}} contentStyle={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: '4px', color: '#e2e8f0' }} />
+                                    <Tooltip cursor={{fill: '#1e293b'}} contentStyle={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: '4px' }} itemStyle={{ color: '#ffffff' }} labelStyle={{ color: '#ffffff' }} />
                                     <Bar dataKey="count" radius={[2, 2, 0, 0]}>
                                         {severityData.map((entry, index) => (
                                             <Cell key={`cell-${index}`} fill={SEVERITY_COLORS[entry.name] || '#3b82f6'} />
@@ -182,7 +182,7 @@ const DefaultReports = () => {
                                 <BarChart data={statusData} margin={{ top: 5, right: 0, bottom: 0, left: -20 }}>
                                     <XAxis dataKey="name" stroke="#475569" fontSize={10} tickLine={false} axisLine={{stroke: '#1e293b'}} />
                                     <YAxis stroke="#475569" fontSize={10} tickLine={false} axisLine={false} />
-                                    <Tooltip cursor={{fill: '#1e293b'}} contentStyle={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: '4px', color: '#e2e8f0' }} />
+                                    <Tooltip cursor={{fill: '#1e293b'}} contentStyle={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: '4px' }} itemStyle={{ color: '#ffffff' }} labelStyle={{ color: '#ffffff' }} />
                                     <Bar dataKey="count" fill="#00c6ff" radius={[2, 2, 0, 0]} />
                                 </BarChart>
                             </ResponsiveContainer>
@@ -196,7 +196,7 @@ const DefaultReports = () => {
                                 <BarChart layout="vertical" data={responseTimeData} margin={{ top: 5, right: 20, bottom: 0, left: 10 }}>
                                     <XAxis type="number" stroke="#475569" fontSize={10} tickLine={false} axisLine={{stroke: '#1e293b'}} />
                                     <YAxis dataKey="name" type="category" stroke="#475569" fontSize={10} tickLine={false} axisLine={false} />
-                                    <Tooltip cursor={{fill: '#1e293b'}} contentStyle={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: '4px', color: '#e2e8f0' }} />
+                                    <Tooltip cursor={{fill: '#1e293b'}} contentStyle={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: '4px' }} itemStyle={{ color: '#ffffff' }} labelStyle={{ color: '#ffffff' }} />
                                     <Bar dataKey="minutes" radius={[0, 2, 2, 0]}>
                                         {responseTimeData.map((entry, index) => (
                                             <Cell key={`cell-${index}`} fill={SEVERITY_COLORS[entry.name] || '#3b82f6'} />
@@ -218,7 +218,7 @@ const DefaultReports = () => {
                                     </defs>
                                     <XAxis dataKey="name" stroke="#475569" fontSize={10} tickLine={false} axisLine={{stroke: '#1e293b'}} />
                                     <YAxis stroke="#475569" fontSize={10} tickLine={false} axisLine={false} />
-                                    <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: '4px', color: '#e2e8f0' }} />
+                                    <Tooltip contentStyle={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: '4px' }} itemStyle={{ color: '#ffffff' }} labelStyle={{ color: '#ffffff' }} />
                                     <Area type="monotone" dataKey="volume" stroke="#f59e0b" strokeWidth={2} fillOpacity={1} fill="url(#colorTrend)" />
                                 </AreaChart>
                             </ResponsiveContainer>
