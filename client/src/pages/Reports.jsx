@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, AreaChart, Area, Cell } from 'recharts';
+import { jsPDF } from 'jspdf';
 import Sidebar from '../components/Sidebar';
 import Header from '../components/Header';
 import { useAuth } from '../context/AuthContext';
@@ -113,7 +114,97 @@ const DefaultReports = () => {
 
     // Print PDF
     const handlePrint = () => {
-        window.print();
+        const doc = new jsPDF();
+        
+        // Header
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(22);
+        doc.setTextColor(15, 23, 42); // #0f172a
+        doc.text("SeekYur Security Report", 20, 25);
+        
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(10);
+        doc.setTextColor(100, 116, 139); // #64748b
+        doc.text(`Generated: ${new Date().toLocaleString()}`, 20, 32);
+        
+        // Line separator
+        doc.setDrawColor(226, 232, 240); // #e2e8f0
+        doc.line(20, 36, 190, 36);
+        
+        // Statistics section
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.setTextColor(15, 23, 42);
+        doc.text("Incident Summary Statistics", 20, 48);
+        
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.text(`Total Incidents: ${totalIncidents}`, 25, 58);
+        doc.text(`Resolved Incidents: ${resolvedIncidents}`, 25, 66);
+        doc.text(`Critical Open Incidents: ${criticalOpenIncidents}`, 25, 74);
+        doc.text(`SLA Resolution Rate: ${resolutionRate}%`, 25, 82);
+        
+        // Table section
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(14);
+        doc.text("Full Incident Logs", 20, 96);
+        
+        // Table headers
+        doc.setFontSize(10);
+        doc.setTextColor(255, 255, 255);
+        doc.setFillColor(15, 23, 42); // Header background
+        doc.rect(20, 102, 170, 8, "F");
+        
+        doc.text("ID", 22, 107);
+        doc.text("Title", 45, 107);
+        doc.text("Severity", 110, 107);
+        doc.text("Status", 135, 107);
+        doc.text("Opened", 160, 107);
+        
+        // Table rows
+        doc.setTextColor(51, 65, 85); // Row text color
+        doc.setFont("helvetica", "normal");
+        
+        let yPos = 116;
+        incidents.forEach((inc) => {
+            if (yPos > 275) {
+                doc.addPage();
+                // Sub-header on new page
+                doc.setFont("helvetica", "bold");
+                doc.setFillColor(15, 23, 42);
+                doc.rect(20, 20, 170, 8, "F");
+                doc.setTextColor(255, 255, 255);
+                doc.text("ID", 22, 25);
+                doc.text("Title", 45, 25);
+                doc.text("Severity", 110, 25);
+                doc.text("Status", 135, 25);
+                doc.text("Opened", 160, 25);
+                
+                doc.setFont("helvetica", "normal");
+                doc.setTextColor(51, 65, 85);
+                yPos = 34;
+            }
+            
+            const incId = `INC-${inc.id || inc._id?.substring(0,3).toUpperCase()}`;
+            const titleVal = inc.title ? (inc.title.length > 30 ? inc.title.substring(0, 28) + "..." : inc.title) : 'N/A';
+            const severityVal = inc.severity || 'Low';
+            const statusVal = inc.status || 'Analyze';
+            const dateVal = new Date(inc.createdAt).toLocaleDateString();
+            
+            doc.text(incId, 22, yPos);
+            doc.text(titleVal, 45, yPos);
+            doc.text(severityVal, 110, yPos);
+            doc.text(statusVal, 135, yPos);
+            doc.text(dateVal, 160, yPos);
+            
+            // Draw row border
+            doc.setDrawColor(241, 245, 249);
+            doc.line(20, yPos + 3, 190, yPos + 3);
+            
+            yPos += 10;
+        });
+        
+        doc.save(`seekyur_security_report_${new Date().toISOString().split('T')[0]}.pdf`);
     };
 
     // Pagination logic
