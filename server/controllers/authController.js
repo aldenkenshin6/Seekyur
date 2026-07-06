@@ -33,9 +33,14 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     const { email, password } = req.body;
-    const ipAddress = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
+    let ipAddress = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
+    if (ipAddress === '::1' || ipAddress === '::ffff:127.0.0.1') {
+        ipAddress = '127.0.0.1';
+    } else if (ipAddress.startsWith('::ffff:')) {
+        ipAddress = ipAddress.substring(7);
+    }
     const userAgent = req.headers['user-agent'] || 'Unknown Agent';
-    const location = (ipAddress === '127.0.0.1' || ipAddress === '::1') ? 'Localhost' : 'Local Network';
+    const location = (ipAddress === '127.0.0.1') ? 'Localhost' : 'Local Network';
 
     try {
         const user = await User.findOne({
@@ -199,9 +204,14 @@ const login = async (req, res) => {
 
 const logoutUser = async (req, res) => {
     const { email } = req.body;
-    const ipAddress = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
+    let ipAddress = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
+    if (ipAddress === '::1' || ipAddress === '::ffff:127.0.0.1') {
+        ipAddress = '127.0.0.1';
+    } else if (ipAddress.startsWith('::ffff:')) {
+        ipAddress = ipAddress.substring(7);
+    }
     const userAgent = req.headers['user-agent'] || 'Unknown Agent';
-    const location = (ipAddress === '127.0.0.1' || ipAddress === '::1') ? 'Localhost' : 'Local Network';
+    const location = (ipAddress === '127.0.0.1') ? 'Localhost' : 'Local Network';
 
     try {
         const logEntry = await AuthLog.create({

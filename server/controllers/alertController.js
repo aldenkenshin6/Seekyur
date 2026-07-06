@@ -11,7 +11,12 @@ const getAlerts = async (req, res) => {
 
 const createAlert = async (req, res) => {
     const { title, description, severity, source } = req.body;
-    const ipAddress = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
+    let ipAddress = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
+    if (ipAddress === '::1' || ipAddress === '::ffff:127.0.0.1') {
+        ipAddress = '127.0.0.1';
+    } else if (ipAddress.startsWith('::ffff:')) {
+        ipAddress = ipAddress.substring(7);
+    }
     try {
         const alert = await Alert.create({
             title,
