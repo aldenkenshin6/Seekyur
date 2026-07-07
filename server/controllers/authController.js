@@ -33,7 +33,9 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     const { email, password } = req.body;
-    let ipAddress = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
+    let ipAddress = req.headers['x-forwarded-for']
+        ? req.headers['x-forwarded-for'].split(',')[0].trim()
+        : (req.ip || req.socket.remoteAddress || '127.0.0.1');
     if (ipAddress === '::1' || ipAddress === '::ffff:127.0.0.1') {
         ipAddress = '127.0.0.1';
     } else if (ipAddress.startsWith('::ffff:')) {
@@ -252,7 +254,9 @@ const login = async (req, res) => {
 
 const logoutUser = async (req, res) => {
     const { email } = req.body;
-    let ipAddress = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
+    let ipAddress = req.headers['x-forwarded-for']
+        ? req.headers['x-forwarded-for'].split(',')[0].trim()
+        : (req.ip || req.socket.remoteAddress || '127.0.0.1');
     if (ipAddress === '::1' || ipAddress === '::ffff:127.0.0.1') {
         ipAddress = '127.0.0.1';
     } else if (ipAddress.startsWith('::ffff:')) {

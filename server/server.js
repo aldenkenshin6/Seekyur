@@ -21,6 +21,7 @@ dotenv.config();
 connectDB();
 
 const app = express();
+app.set('trust proxy', true);
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: { origin: process.env.CLIENT_URL || '*', methods: ['GET', 'POST'] }
@@ -43,15 +44,15 @@ app.use(async (req, res, next) => {
             token = req.headers.authorization.split(' ')[1];
             const decoded = jwt.verify(token, process.env.JWT_SECRET || 'seekyur-demo-secret');
             const user = await User.findById(decoded.id);
-            if (user) {
-                userEmail = user.email;
-            }
-        } catch (e) {
+            if (user) userEmail = user.email;
+        } catch (error) {
             // Token error (expired or invalid), log as anomaly later if we hit 401
         }
     }
 
-    let ipAddress = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
+    let ipAddress = req.headers['x-forwarded-for']
+        ? req.headers['x-forwarded-for'].split(',')[0].trim()
+        : (req.ip || req.socket.remoteAddress || '127.0.0.1');
     if (ipAddress === '::1' || ipAddress === '::ffff:127.0.0.1') {
         ipAddress = '127.0.0.1';
     } else if (ipAddress.startsWith('::ffff:')) {
