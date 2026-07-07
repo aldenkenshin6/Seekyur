@@ -240,9 +240,7 @@ const login = async (req, res) => {
                 });
             } else {
                 res.status(401).json({
-                    message: user 
-                        ? `Invalid password. ${attemptsRemaining} attempts remaining.` 
-                        : `Invalid username or password. ${attemptsRemaining} attempts remaining.`,
+                    message: `Invalid password. ${attemptsRemaining} attempts remaining.`,
                     attemptsRemaining
                 });
             }
