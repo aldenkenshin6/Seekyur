@@ -57,6 +57,49 @@ const login = async (req, res) => {
         const maxAttempts = setting.maxAttempts;
         const lockoutDuration = setting.lockoutDuration;
 
+        // Fetch recent failed login attempts for this IP address (within the lockout window)
+        const ipFailures = await AuthLog.countDocuments({
+            ipAddress,
+            result: 'Failed',
+            event: 'Login',
+            timestamp: { $gte: new Date(Date.now() - lockoutDuration * 1000) }
+        });
+
+        // Check if IP is currently locked out
+        if (ipFailures >= maxAttempts) {
+            const lastFailure = await AuthLog.findOne({
+                ipAddress,
+                result: 'Failed',
+                event: 'Login'
+            }).sort({ timestamp: -1 });
+
+            const secondsSinceLastFailure = lastFailure ? Math.floor((Date.now() - lastFailure.timestamp.getTime()) / 1000) : 0;
+            const remainingSeconds = lockoutDuration - secondsSinceLastFailure;
+
+            if (remainingSeconds > 0) {
+                const logEntry = await AuthLog.create({
+                    result: 'Failed',
+                    event: 'Login',
+                    userEmail: email,
+                    ipAddress,
+                    location,
+                    sessionToken: '-',
+                    userAgent,
+                    failureReason: `Locked out (Try again in ${remainingSeconds}s)`
+                });
+
+                if (io) {
+                    io.emit('receiveAuthLog', logEntry);
+                }
+
+                return res.status(429).json({
+                    message: `Account is temporarily locked out. Try again in ${remainingSeconds} seconds.`,
+                    lockoutUntil: new Date(lastFailure.timestamp.getTime() + lockoutDuration * 1000),
+                    remainingSeconds
+                });
+            }
+        }
+
         // Check if user is locked out
         if (user && user.lockoutUntil && user.lockoutUntil > new Date()) {
             const remainingSeconds = Math.ceil((user.lockoutUntil - new Date()) / 1000);
@@ -146,10 +189,17 @@ const login = async (req, res) => {
                     attemptsRemaining = maxAttempts - user.loginAttempts;
                 }
                 await user.save();
+            } else {
+                // If user doesn't exist, count down attempts remaining using IP failures
+                attemptsRemaining = Math.max(0, maxAttempts - (ipFailures + 1));
+                if (attemptsRemaining === 0) {
+                    remainingSeconds = lockoutDuration;
+                    lockoutUntil = new Date(Date.now() + lockoutDuration * 1000);
+                }
             }
 
-            const errorMsg = user && user.loginAttempts >= maxAttempts 
-                ? `Account locked out (failed ${user.loginAttempts} attempts)` 
+            const errorMsg = (user && user.loginAttempts >= maxAttempts) || (!user && attemptsRemaining === 0)
+                ? `Account locked out (failed ${user ? user.loginAttempts : ipFailures + 1} attempts)` 
                 : failureReason;
 
             const logEntry = await AuthLog.create({
@@ -172,7 +222,7 @@ const login = async (req, res) => {
                 title: `Failed Authentication Attempt: ${email}`,
                 type: 'FAILED AUTH',
                 description: `Failed login attempt for user '${email}' from IP ${ipAddress} (Reason: ${errorMsg})`,
-                severity: user && user.loginAttempts >= maxAttempts ? 'Critical' : 'High',
+                severity: (user && user.loginAttempts >= maxAttempts) || (!user && attemptsRemaining === 0) ? 'Critical' : 'High',
                 source: 'auth-service',
                 sourceIp: ipAddress,
                 isRead: false
@@ -182,7 +232,7 @@ const login = async (req, res) => {
                 io.emit('receiveAlert', alertEntry);
             }
 
-            if (user && user.loginAttempts >= maxAttempts) {
+            if ((user && user.loginAttempts >= maxAttempts) || (!user && attemptsRemaining === 0)) {
                 res.status(429).json({
                     message: `Account is temporarily locked out. Try again in ${remainingSeconds} seconds.`,
                     lockoutUntil,
@@ -192,7 +242,7 @@ const login = async (req, res) => {
                 res.status(401).json({
                     message: user 
                         ? `Invalid password. ${attemptsRemaining} attempts remaining.` 
-                        : 'Invalid username or password.',
+                        : `Invalid username or password. ${attemptsRemaining} attempts remaining.`,
                     attemptsRemaining
                 });
             }
